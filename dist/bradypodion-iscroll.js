@@ -5,7 +5,7 @@
  * Copyright 2013, 2014 excellenteasy GbR, Stephan Bönnemann und David Pfahler
  * Released under the MIT license.
  *
- * Date: 2014-06-29T15:38:17
+ * Date: 2014-08-20T16:42:13
  */
 (function () {
   'use strict';

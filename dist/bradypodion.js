@@ -5,7 +5,7 @@
  * Copyright 2013, 2014 excellenteasy GbR, Stephan Bönnemann und David Pfahler
  * Released under the MIT license.
  *
- * Date: 2014-06-29T15:38:17
+ * Date: 2014-08-20T16:42:13
  */
 (function () {
   'use strict';
@@ -301,7 +301,7 @@
                   $up = $compile(angular.element('<bp-action>').addClass('bp-action-up').attr('ui-sref', up.sref).text(ctrl.getTitleFromState(up.state)))(scope);
                 }
               }
-              var $frstAction, $scndAction, $toolbar;
+              var $frstAction, $scndAction, $thrdAction, $toolbar;
               if (!ios) {
                 var $icon = angular.element('<bp-navbar-icon>');
                 $frstAction = $actions.eq(0);
@@ -309,15 +309,21 @@
                 ctrl.convertActionToIcon($frstAction);
                 ctrl.convertActionToIcon($scndAction);
                 ctrl.convertActionToIcon($up);
-                if ($actions.length > 2) {
+                if ($actions.length > 3) {
                   $toolbar = $compile(angular.element('<bp-action-overflow>').append($actions.not($frstAction).not($scndAction)))(scope);
                 }
                 if (angular.isElement($up)) {
                   $up.append('<div>', $icon);
-                  element.append($up, $title, $frstAction, $scndAction, $toolbar);
-                  return;
+                  element.append($up);
                 }
-                element.append($icon, $title, $frstAction, $scndAction, $toolbar);
+                element.append($icon, $title, $frstAction, $scndAction);
+                if ($actions.length > 3) {
+                  element.append($toolbar);
+                } else {
+                  $thrdAction = $actions.eq(2);
+                  ctrl.convertActionToIcon($thrdAction);
+                  element.append($thrdAction, $toolbar);
+                }
                 return;
               }
               var $arrow;
